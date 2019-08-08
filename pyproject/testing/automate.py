@@ -115,6 +115,7 @@ def test5():
         new_height = browser.execute_script("return document.body.scrollHeight")
 
 
+#test weather app
 def test6():
     browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
     browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
@@ -127,3 +128,96 @@ def test6():
 
     submit = browser.find_element_by_class_name('submit')
     submit.click()
+
+
+#test movie recommendation content-based
+def test7():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+    time.sleep(1)
+    
+    temp = browser.find_element_by_id('movieID')
+    temp.click()
+    time.sleep(1)
+    
+    temp = browser.find_element_by_id('2')
+    temp.click()
+    time.sleep(1)
+    
+    message1 = browser.find_element_by_name('movieName')
+    message1.send_keys('Skyfall')
+    
+    temp = browser.find_element_by_tag_name('button')
+    temp.click()
+    time.sleep(2)
+    
+    
+    message1 = browser.find_element_by_name('movieName')
+    message1.send_keys('Interstellar')
+    
+    temp = browser.find_element_by_tag_name('button')
+    temp.click()
+    time.sleep(2)
+
+
+    message1 = browser.find_element_by_name('movieName')
+    message1.send_keys('sleepfood')
+    
+    temp = browser.find_element_by_tag_name('button')
+    temp.click()
+    time.sleep(3)
+
+#test movie recommendation user-based
+def test8():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+    time.sleep(1)
+    
+    temp = browser.find_element_by_id('movieID')
+    temp.click()
+    time.sleep(1)
+    
+    temp = browser.find_element_by_id('1')
+    temp.click()
+    time.sleep(1)
+
+    input = browser.find_element_by_id('movieName')
+    input.send_keys('Heat (1995)')
+    time.sleep(1)
+
+
+    temp = browser.find_element_by_tag_name('button')
+    temp.click()
+    time.sleep(2)
+
+
+    input = browser.find_element_by_id('movieName')
+    input.send_keys('theENd')
+    time.sleep(1)
+
+    temp = browser.find_element_by_tag_name('button')
+    temp.click()
+    time.sleep(2)
+
+    
+    message1 = browser.find_element_by_name('movieId1')
+    message1.send_keys('2000')
+    select1 = browser.find_element_by_xpath("/html/body/form[2]/select[1]/option[5]")
+    select1.click()
+    time.sleep(1)
+    
+    message2 = browser.find_element_by_name('movieId2')
+    message2.send_keys('100')
+    select2 = browser.find_element_by_xpath("/html/body/form[2]/select[2]/option[6]")
+    select2.click()
+    time.sleep(1)
+    
+    message3 = browser.find_element_by_name('movieId3')
+    message3.send_keys('500')
+    select3 = browser.find_element_by_xpath("/html/body/form[2]/select[3]/option[6]")
+    select3.click()
+    
+    
+    submit2 = browser.find_element_by_xpath("/html/body/form[2]/button[1]")
+    submit2.click()
+
