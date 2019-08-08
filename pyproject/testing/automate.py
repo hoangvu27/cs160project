@@ -7,7 +7,7 @@ def test1():
 #  >>>>   Test goHome without signin  -> pass
 
     browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
-    browser.get('http://localhost:8080/loginRegister/loginLogoutjsp.jsp')
+    browser.get('http://localhost:8080/loginRegister/loginLogout.jsp')
 
     time.sleep(1)
 
@@ -20,13 +20,14 @@ def test2():
 #  >>>>   Test goHome without signout  -> pass
 
     browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
-    browser.get('http://localhost:8080/loginRegister/loginLogoutjsp.jsp')
+    browser.get('http://localhost:8080/loginRegister/loginLogout.jsp')
 
     time.sleep(1)
 
     elem = browser.find_element_by_id('signOut')
     elem.click()
 
+    time.sleep(1)
     link = browser.find_element_by_xpath("/html/body/div[2]/a[1]")
     link.click()
 

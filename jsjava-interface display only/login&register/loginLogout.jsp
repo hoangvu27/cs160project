@@ -29,13 +29,13 @@
 
 	
   function signOut() {
-	  document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/loginRegister/loginLogoutjsp.jsp";
+	  document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/loginRegister/loginLogout.jsp";
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
     sessionStorage.clear();
-    alert('aha');
+    alert('You have signed out');
   }
   
   
