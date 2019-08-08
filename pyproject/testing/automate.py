@@ -221,3 +221,109 @@ def test8():
     submit2 = browser.find_element_by_xpath("/html/body/form[2]/button[1]")
     submit2.click()
 
+#test calculator
+def test9():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+    time.sleep(1)
+    
+    temp = browser.find_element_by_id('calculatorID')
+    temp.click()
+    time.sleep(1)
+
+    input1 = browser.find_element_by_xpath("/html/body/form[1]/input[1]")
+    input1.send_keys('1')
+    input2 = browser.find_element_by_xpath("/html/body/form[1]/input[2]")
+    input2.send_keys('7')
+    time.sleep(1)
+    input3 = browser.find_element_by_xpath("/html/body/form[1]/input[3]")
+    input3.send_keys('1000')
+    select = browser.find_element_by_xpath("/html/body/form[1]/select[1]/option[1]")
+    select.click()
+    time.sleep(1)
+    submit = browser.find_element_by_xpath("/html/body/form[1]/input[8]")
+    submit.click()
+
+    time.sleep(3)
+    
+    input1 = browser.find_element_by_xpath("/html/body/form[2]/input[1]")
+    input1.send_keys('5')
+    input2 = browser.find_element_by_xpath("/html/body/form[2]/input[2]")
+    input2.send_keys('12')
+    time.sleep(1)
+    submit = browser.find_element_by_xpath("/html/body/form[2]/input[3]")
+    submit.click()
+
+    time.sleep(3)
+
+    input1 = browser.find_element_by_xpath("/html/body/form[3]/input[1]")
+    input1.send_keys('60000')
+    input2 = browser.find_element_by_xpath("/html/body/form[3]/input[2]")
+    input2.send_keys('1')
+    time.sleep(1)
+    input3 = browser.find_element_by_xpath("/html/body/form[3]/input[4]")
+    input3.send_keys('4')
+    input4 = browser.find_element_by_xpath("/html/body/form[3]/input[5]")
+    input4.send_keys('6')
+    time.sleep(1)
+    submit = browser.find_element_by_xpath("/html/body/form[3]/input[7]")
+    submit.click()
+
+#test finance
+def test10():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+    time.sleep(1)
+    
+    temp = browser.find_element_by_id('financeID')
+    temp.click()
+    time.sleep(1)
+
+    link = browser.find_element_by_xpath("/html/body/a[2]")
+    link.click()
+    time.sleep(1)
+
+    input1 = browser.find_element_by_xpath("/html/body/form[2]/input[1]")
+    input1.send_keys('08/09/2019')
+    addExpenses = browser.find_element_by_xpath("/html/body/button[1]")
+    addExpenses.click()
+    addExpenses.click()
+    time.sleep(1)
+    input2 = browser.find_element_by_xpath("/html/body/form[2]/div[1]/div[1]/input[1]")
+    input2.send_keys('20')
+    input4 = browser.find_element_by_xpath("/html/body/form[2]/div[1]/div[1]/select[1]/option[6]")
+    input4.click()
+
+    input3 = browser.find_element_by_xpath("/html/body/form[2]/div[1]/div[2]/input[1]")
+    input3.send_keys('4')
+    input4 = browser.find_element_by_xpath("/html/body/form[2]/div[1]/div[2]/select[1]/option[3]")
+    input4.click()
+
+    submit = browser.find_element_by_xpath("/html/body/form[2]/input[2]")
+    submit.click()
+    time.sleep(2)
+
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+
+
+    temp = browser.find_element_by_id('financeID')
+    temp.click()
+    time.sleep(1)
+
+    link = browser.find_element_by_xpath("/html/body/a[3]")
+    link.click()
+    time.sleep(3)
+
+#test statement
+def test11():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+    time.sleep(1)
+    
+    temp = browser.find_element_by_id('accountingID')
+    temp.click()
+    time.sleep(1)
+    link = browser.find_element_by_xpath("/html/body/div[1]/a[5]")
+    link.click()
+
