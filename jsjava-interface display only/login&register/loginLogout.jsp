@@ -15,7 +15,7 @@
 
 
 <div class="g-signin2" data-onsuccess="onSignIn"></div> <br>
-	<a href="#" onclick="signOut();">Sign out</a> <br>
+	<a href="#" onclick="signOut();" id="signOut">Sign out</a> <br>
 	
 <!-- 	<a href="" >Home</a> -->
 <!-- 	onclick="" -> store sth in json ???  -->
