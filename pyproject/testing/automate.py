@@ -74,5 +74,56 @@ def test3():
     send2 = browser2.find_element_by_id('sendMessage')
     send2.click()
 
+    time.sleep(3)
+
+#    test dictionary
+def test4():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+
+    temp = browser.find_element_by_id('dictID')
+    temp.click()
+
+    message1 = browser.find_element_by_id('id_word')
+    message1.send_keys('blind')
+
+    submit = browser.find_element_by_id('searchLabel')
+    submit.click()
+    time.sleep(4)
+
+    message1 = browser.find_element_by_id('id_word')
+    message1.send_keys('asdsfa')
+    submit = browser.find_element_by_id('searchLabel')
+    submit.click()
+    time.sleep(2)
 
 
+#test news app
+def test5():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+
+    temp = browser.find_element_by_id('newsID')
+    temp.click()
+    
+#    the scroll down is not written by me
+    last_height = browser.execute_script("return document.body.scrollHeight")
+
+    for i in range(12):
+        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(2)
+        new_height = browser.execute_script("return document.body.scrollHeight")
+
+
+def test6():
+    browser = webdriver.Chrome('/Users/Student/pyproject/chromedriver')
+    browser.get('http://localhost:4000/?serialNumber=MTA1OTg4MjExMjk5ODAwNzA1Nzc1LEhvYW5nIFZ1LGhvYW5ndnUyNzE5NEBnbWFpbC5jb20')
+    
+    temp = browser.find_element_by_id('weatherID')
+    temp.click()
+
+    message1 = browser.find_element_by_name('changeLocation')
+    message1.send_keys('paris')
+
+    submit = browser.find_element_by_class_name('submit')
+    submit.click()
