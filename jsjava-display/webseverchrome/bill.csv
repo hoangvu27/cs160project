@@ -1,0 +1,8 @@
+customerId : 88
+dayCreated : 2019-08-07
+dueDate : 2019-08-07
+invoiceNumber : 7
+orderNumber : 7
+itemId ,quantity ,price ,tax ,discount 
+2,02,3.00,0.00,0.00
+Total : 6.0

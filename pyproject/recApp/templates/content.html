@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html>
+
+<body>
+	<form method="post" id="form1">
+		{% csrf_token %}
+		Please enter your most favorite movie: <br>
+		<input type="text" name="movieName">
+		<button type="submit" form="form1" value="Submit">Submit</button>
+	</form>
+	<br>
+	The movie on top is the most related movie <br>
+	
+	<br>
+	 {% if search == 1 %}
+			{{message}}
+	{% endif %}
+	<br>
+	{% for x in arr %}
+		{{x}} <br>
+	{% endfor %}
+	
+</body>
+	
+	
+</html>
+
+

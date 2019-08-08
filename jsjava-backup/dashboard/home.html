@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+	<header>
+		<script type="application/json" src="/Users/Student/jsjava/dashboard/home.js">
+		</script>
+		
+		<script>
+			
+		</script>
+	</header>
+	<link href="home.css" rel="stylesheet" type="text/css">
+	<body>
+		<input type="checkbox" class="navCheck" id="navID">
+		<label class="navLabel" for="navID">
+			<img class="navOpen" src="/icons/menu.png" alt="">
+			<img class="navClose" src="/icons/close.jpg" alt="">
+		</label>
+  		<ul class="nav">
+    	 <li><a class="current" href="http://localhost:4000/">Home</a></li> 
+
+		 <li><a href="http://localhost:8080/loginRegister/loginLogoutjsp.jsp" onclick="signOut();">Sign out</a></li> 
+   		 <li><a id="Accounting" onclick="showApp(this)">Accounting App</a></li>
+   		 <li><a id="Finance" onclick="showApp(this)">Finance App</a></li>
+   		 <li><a id="WeatherApp" onclick="showApp(this)">Weather App</a></li>
+		 <li id="Calculators App" onclick="showApp(this)">Calculators</li>	
+		 <li><a id="spam" onclick="showApp(this)">Spam Contact</a></li>
+			
+		 <li><a id="rating" onclick="showApp(this)">Rating + Review </a></li>
+		 <li><a id="movie" onclick="showApp(this)">movie recommender</a></li>
+		 <li><a id="fish" onclick="showApp(this)">Fish Game</a></li>
+		<li><a id="chat" onclick="showApp(this)">Chat App</a></li>
+			
+			<li><a id="sponsor" onclick="showApp(this)">Advertisement</a></li>
+			<li><a id="forum" onclick="showApp(this)">Forum</a></li>
+			
+			<li><a id="dict" onclick="showApp(this)">Dictionary App</a></li>
+			<li><a id="score" onclick="showApp(this)">Scoring Board</a></li>
+			<li><a id="news" onclick="showApp(this)">News App</a></li>
+			<li><a id="unit" onclick="showApp(this)">Unit Converter</a></li>
+			<li><a id="clock" onclick="showApp(this)">Clock</a></li>
+ 		 </ul>
+			
+
+		
+		
+		<div id="calculatorID" class="app" style="top:250px; left: 250px;" >
+ 			<div class="appHeader" id="header1" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://localhost:8080/Calculator/calculator.jsp">
+				<img class="appImg"  src="/icons/calculator.png" alt="" >
+			</a>
+		</div>
+		
+		
+		<div id="weatherID" class="app" style="top:50px; left: 600px;" >
+ 			<div class="appHeader" id="header2" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+			</div>
+			<a href="http://127.0.0.1:8000/Weather/">
+				<img class="appImg"  src="/icons/weather.jpeg" alt="" >
+			</a>
+		</div>
+		
+		
+		
+		<!--		2 apps here -->
+		
+		<div id="accountingID" class="app" style="top:250px; left: 1200px;" >
+ 			<div class="appHeader" id="header3" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="#" onClick="formAccounting()">
+				<img class="appImg"  src="/icons/accounting.jpg" alt="" >
+			</a>
+		</div>
+		
+		<div id="financeID" class="app" style="top:50px; left: 400px;" >
+ 			<div class="appHeader" id="header4" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="#" onClick="formFinance()">
+				<img class="appImg"  src="/icons/finance.jpg" alt="" >
+			</a>
+		</div>
+		
+		
+		
+		
+		
+		<!--		2 apps here -->
+		
+		<div id="spamID" class="app" style="top:50px; left: 800px;" >
+ 			<div class="appHeader" id="header5" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8000/contact/">
+				<img class="appImg"  src="/icons/spam.jpg" alt="" >
+			</a>
+		</div>
+		
+		<div id="ratingID" class="app" style="top:50px; left: 1000px;" >
+ 			<div class="appHeader" id="header6" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8000/rate/">
+				<img class="appImg"  src="/icons/rating.png" alt="" >
+			</a>
+		</div>
+		
+		
+		
+		
+		<!--		2 apps here -->
+		
+		
+		<div id="movieID" class="app" style="top:250px; left: 400px;" >
+ 			<div class="appHeader" id="header7" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8000/rec/">
+				<img class="appImg"  src="/icons/movie.jpg" alt="" >
+			</a>
+		</div>
+		
+		<div id="fishID" class="app" style="top:500px; left: 400px;" >
+ 			<div class="appHeader" id="header8" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://localhost:2000/">
+				<img class="appImg"  src="/icons/fish.png" alt="" >
+			</a>
+		</div>
+		
+		
+		
+		<!--		2 apps here -->
+		
+		
+		<div id="chatID" class="app" style="top:250px; left: 800px;" >
+ 			<div class="appHeader" id="header9" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://localhost:3000/">
+				<img class="appImg"  src="/icons/chat.jpg" alt="" >
+			</a>
+		</div>
+		
+		<div id="sponsorID" class="app" style="top:500px; left: 700px;" >
+ 			<div class="appHeader" id="header10" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8888/advertisement/advertisement.html">
+				<img class="appImg"  src="/icons/ads.jpeg" alt="" >
+			</a>
+		</div>
+		
+		
+		
+		<!--		2 apps here -->
+		
+		
+		<div id="forumID" class="app" style="top:250px; left: 600px;" >
+ 			<div class="appHeader" id="header11" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8888/forum/forum.html">
+				<img class="appImg"  src="/icons/forum.png" alt="" >
+			</a>
+		</div>
+		
+		<div id="dictID" class="app" style="top:500px; left: 1000px;" >
+ 			<div class="appHeader" id="header12" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8000/dict/">
+				<img class="appImg"  src="/icons/dictionary.png" alt="" >
+			</a>
+		</div>
+		
+		<!--		2 apps here -->
+		
+		
+		<div id="scoreID" class="app" style="top:250px; left: 1000px;" >
+ 			<div class="appHeader" id="header13" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8888/ScoringBoard/Main%20Scoring%20Board.html">
+				<img class="appImg"  src="/icons/score.jpeg" alt="" >
+			</a>
+		</div>
+		
+		<div id="newsID" class="app" style="top:50px; left: 1200px;" >
+ 			<div class="appHeader" id="header14" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8888/news%20app/newsRSS.html">
+				<img class="appImg"  src="/icons/news.png" alt="" >
+			</a>
+		</div>
+		
+		
+		
+		<!--		2 apps here -->
+		
+		
+		<div id="unitID" class="app" style="top:500px; left: 200px;" >
+ 			<div class="appHeader" id="header15" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8888/unit%20converter/unit%20conversion.html">
+				<img class="appImg"  src="/icons/unit.png" alt="" >
+			</a>
+		</div>
+		
+		<div id="clockID" class="app" style="top:500px; left: 1200px;" >
+ 			<div class="appHeader" id="header16" onmousedown="readyToDrag()">
+				<img class="eliminateButton" src="/icons/eliminate.png" alt="" align="right" onclick="removeApp(this)">
+
+			</div>
+			<a href="http://127.0.0.1:8000/clock/">
+				<img class="appImg"  src="/icons/clock.jpg" alt="" >
+			</a>
+		</div>
+		
+		
+		
+		
+		<img class="removeIcon" id="removeIcon_ID" src="/icons/remove.png" alt="" 
+			 		onclick="showRemoveApp()" style="opacity: 1;">
+
+	
+		
+		
+		<div id="google">
+			<form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+			
+			<input type="hidden" >
+			<input autocomplete="on"  name="q" placeholder="Google search here"   type="text">
+			<button class="button" type="submit">Search</button>
+	
+			</form>
+		</div>	
+		
+	
+	<form id="toFinance" action="http://127.0.0.1:8888/finance/Finance%20Main.html">
+		<input type="hidden" id="serialNumberFinance" name="serialNumberFinance" value=""/>
+	</form>
+	
+	<form id="toAccounting"  action="http://127.0.0.1:8888/Accounting/mainAccounting.html">
+		<input type="hidden" id="serialNumberAccounting" name="serialNumberAccounting" value=""/>
+	</form>
+		
+	<script>
+		let targetHeader;
+		function readyToDrag() {
+			targetHeader = event.target.id
+			
+			if (targetHeader === 'header1') {
+				dragApp(document.getElementById("calculatorID"));
+			}
+			else if (targetHeader === 'header2' ) {
+				dragApp(document.getElementById("weatherID"));
+			}
+			else if (targetHeader === 'header3' ) {
+				dragApp(document.getElementById("accountingID"));
+			}
+			else if (targetHeader === 'header4' ) {
+				dragApp(document.getElementById("financeID"));
+			}
+			else if (targetHeader === 'header5' ) {
+				dragApp(document.getElementById("spamID"));
+			}
+			
+			
+			
+			else if (targetHeader === 'header6' ) {
+				dragApp(document.getElementById("ratingID"));
+			}
+			else if (targetHeader === 'header7' ) {
+				dragApp(document.getElementById("movieID"));
+			}
+			else if (targetHeader === 'header8' ) {
+				dragApp(document.getElementById("fishID"));
+			}
+			else if (targetHeader === 'header9' ) {
+				dragApp(document.getElementById("chatID"));
+			}
+			else if (targetHeader === 'header10' ) {
+				dragApp(document.getElementById("sponsorID"));
+			}
+			
+			
+			
+			
+			else if (targetHeader === 'header11' ) {
+				dragApp(document.getElementById("forumID"));
+			}
+			else if (targetHeader === 'header12' ) {
+				dragApp(document.getElementById("dictID"));
+			}
+			else if (targetHeader === 'header13' ) {
+				dragApp(document.getElementById("scoreID"));
+			}
+			else if (targetHeader === 'header14' ) {
+				dragApp(document.getElementById("newsID"));
+			}
+			else if (targetHeader === 'header15' ) {
+				dragApp(document.getElementById("unitID"));
+			}
+			else if (targetHeader === 'header16' ) {
+				dragApp(document.getElementById("clockID"));
+			}
+
+		//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
+		// from this site, I took elementDrag(), dragMouseDown(), closeDragElement()
+		function dragApp( app ) {	
+			let a;
+			let b;
+			let c;
+			let d;
+			app.onmousedown = dragMouseDown;
+		
+			function dragMouseDown() {
+    			pos3 = event.clientX;
+    			pos4 = event.clientY;
+    			document.onmouseup = closeDragElement;				
+				document.onmousemove = elementDrag;
+  			}
+
+			function elementDrag() {
+    			pos1 = pos3 - event.clientX;
+				pos2 = pos4 - event.clientY;
+				pos3 = event.clientX;
+    			pos4 = event.clientY;
+    
+				app.style.top = (app.offsetTop - pos2) + "px";
+				app.style.left = (app.offsetLeft - pos1) + "px";
+			}
+
+  			function closeDragElement() {
+    			document.onmouseup = null;
+				document.onmousemove = null;
+			}
+				
+		}
+		
+	}
+	</script>
+	<script> 
+//		every user will see the same dashboard screen everytime it is load. Otherwise, has to record dashboard lay out in database along with sessionId of each user
+	
+			function showRemoveApp() {	
+				eliminateButtonList = document.getElementsByClassName("eliminateButton") 
+				let temp = document.getElementById("removeIcon_ID");
+				
+  				if (temp.style.opacity === "1") {
+					for ( x of eliminateButtonList ) {
+						x.style.display = "block";
+					}
+					temp.style.opacity = "0.5";
+  				} else {
+					for ( x of eliminateButtonList ) {
+						x.style.display = "none";
+					}
+					temp.style.opacity = "1";
+  				}			
+			}
+		
+			function removeApp(element) {
+				let temp = element.parentElement.parentElement
+				temp.style.transition = "2s";
+				temp.style.width = "20px";
+				temp.style.height = "20px";
+				setTimeout(function() { element.parentElement.parentElement.style.display = "none"; }, 1200);
+				
+			}
+		
+			function showApp(element) {
+				let temp
+				if (element.id === "Calculators App") {
+				    temp = document.getElementById("calculatorID");
+				}
+				else if (element.id === "WeatherApp") {
+					temp = document.getElementById("weatherID");
+				}
+				else if (element.id === "Accounting") {
+					temp = document.getElementById("accountingID");
+				}
+				else if (element.id === "Finance") {
+					temp = document.getElementById("financeID");
+				}
+				
+				
+				
+				else if (element.id === "spam") {
+					temp = document.getElementById("spamID");
+				}
+				else if (element.id === "rating") {
+					temp = document.getElementById("ratingID");
+				}
+				else if (element.id === "movie") {
+					temp = document.getElementById("movieID");
+				}
+				else if (element.id === "fish") {
+					temp = document.getElementById("fishID");
+				}
+				
+				
+				
+				
+				else if (element.id === "chat") {
+					temp = document.getElementById("chatID");
+				}
+				else if (element.id === "sponsor") {
+					temp = document.getElementById("sponsorID");
+				}
+				else if (element.id === "forum") {
+					temp = document.getElementById("forumID");
+				}
+				else if (element.id === "dict") {
+					temp = document.getElementById("dictID");
+				}
+				
+				
+				
+				else if (element.id === "score") {
+					temp = document.getElementById("scoreID");
+				}
+				else if (element.id === "news") {
+					temp = document.getElementById("newsID");
+				}
+				else if (element.id === "unit") {
+					temp = document.getElementById("unitID");
+				}
+				else if (element.id === "clock") {
+					temp = document.getElementById("clockID");
+				}
+				
+				
+				
+				
+				
+				    temp.style.width = "80px";
+				    temp.style.height = "100px";
+					temp.style.display = "block";
+					temp.style.transition = "none";
+			}
+		
+		
+	</script>
+	
+		<script>
+		var request = new XMLHttpRequest()
+		request.open('GET', 'http://localhost:8080/loginRegister/loginLogoutjsp.jsp', true)
+		console.log(request)
+		
+			
+			
+//		fetch('file1.json')
+//						.then(response => {
+//							return response.json()
+//						})
+//						.then(data => {
+//							console.log(data.permitted )
+//							if ( data.permitted === false ) {
+//								window.location.href = 'http://localhost:8080/loginRegister/loginLogoutjsp.jsp'
+//							}
+//						})	
+			
+	</script>
+		
+		<script>
+			console.log(sessionStorage.getItem('myUserEntity'))
+				let x = location.search;
+				x = x.substring(1, x.length)
+				let arr = x.split("=")
+				
+				let targetIndex =  arr.indexOf('serialNumber')
+			let temp = arr[targetIndex + 1]
+
+			console.log(atob(temp))
+
+			
+			if ( arr[arr.indexOf('serialNumber') + 1] === "" ) {
+				window.location.replace("http://localhost:8080/loginRegister/loginLogoutjsp.jsp")
+				
+			}
+
+			
+			
+			function formFinance() {
+				document.getElementById('serialNumberFinance').value = temp
+				document.getElementById('toFinance').submit()
+			}
+			function formAccounting() {
+				document.getElementById('serialNumberAccounting').value = temp
+				document.getElementById('toAccounting').submit()
+			}
+		</script>
+	</body>
+	
+</html>
+

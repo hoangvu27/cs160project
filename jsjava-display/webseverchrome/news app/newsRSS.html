@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+    <html>
+    	<head>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+			<style>
+/*	buttonLoad is taken from w3school   */
+.buttonload {
+  background-color: #4CAF50; 
+  border: none; 
+  color: white; 
+  padding: 12px 24px; 
+  font-size: 16px; 
+	position: relative;
+	top: -270px;
+	display: none;
+}
+
+
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
+}
+</style>
+    	</head>
+		<body>
+			<br> 
+			<span style="color:red; font-size: 40px;"><b> Scrolling the mouse to see more news </b> </span>
+		 	<br>		
+			<div class="feedgrabbr_widget" id="fgid_102b94792e5302b786c25830a"></div>
+			
+			<div id="cont"  onscroll="myFunction()"  track="0">  </div>
+			
+			<button class="buttonload" id="buttonLoad">
+ 				<i class="fa fa-spinner fa-spin"></i>Loading
+			</button>	
+		
+			
+<!--			this script of retrieving and loading news is written by me -->
+	<script>
+		
+				window.onscroll = function() {myFunction()};
+				function myFunction() {
+  				if(window.innerHeight + window.scrollY > document.body.clientHeight  ) { 
+					track = document.getElementById("cont").getAttribute('track')
+					parseInt(track)
+					let url;
+					if (track <= 19) {
+						url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=7da0f68f18c14e59a460433487d29b5a'		
+						x = track
+				    }
+					else  {
+						url = 'https://newsapi.org/v2/everything?q=forbes&apiKey=7da0f68f18c14e59a460433487d29b5a'
+						x = track % 20  
+					}
+					fetch(url)
+						.then(response => {
+							return response.json()
+						})
+						.then(data => {
+						   for (i=0; i< 3; i++) {
+							let p = document.createElement("p");
+								let urlLink = document.createElement("a");
+								urlLink.setAttribute('href', data.articles[x].url)   
+								let image = document.createElement("img")
+								image.setAttribute('src', data.articles[x].urlToImage)   
+								image.setAttribute('alt', "") 
+								image.setAttribute('width', "80px") 
+								image.setAttribute('height', "80px") 
+							    image.setAttribute('border-radius', "60%") 
+							    image.setAttribute('float', "left") 
+							    image.setAttribute('margin-right', "10px") 
+				   				let n = document.createTextNode(data.articles[x].title);
+								urlLink.appendChild(image);
+							    urlLink.appendChild(n);  
+								let br = document.createElement("br");
+								let description = document.createTextNode(data.articles[x].description);
+							p.appendChild(urlLink);
+							p.appendChild(br);
+							p.appendChild(description);
+							
+							let element = document.getElementById("cont");
+							element.appendChild(p);	
+							x++
+							track++
+							document.getElementById("cont").setAttribute('track', track.toString())   
+//							x++.toString()  --> this does not work
+						   }
+							document.getElementById("buttonLoad").style.display = "block";
+							setTimeout( () => document.getElementById("buttonLoad").style.display = "none", 5000)
+							
+//							here, can put another url and fetch 
+//							const url = 'https://newsapi.org/v2/everything?q=forbes&apiKey=7da0f68f18c14e59a460433487d29b5a'
+//								fetch(url)	
+							})
+						.catch(error =>  {
+									})
+						
+					}	
+		}
+		
+		</script>
+
+		
+			
+			
+<!--		the widget below is taken from FeedGrabrr  -->
+		<script>if (typeof (fg_widgets) === "undefined") fg_widgets = new Array(); fg_widgets.push("fgid_102b94792e5302b786c25830a");</script>
+		
+		<script async src="https://www.feedgrabbr.com/widget/fgwidget.js"></script>
+		
+
+    	</body>
+    </html>

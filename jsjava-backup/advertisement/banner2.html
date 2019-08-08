@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<script>
+		(function() {
+    var currentScript="currentScript",scripts=document.getElementsByTagName("script");currentScript in document||Object.defineProperty(document,currentScript,{get:function(){try{throw Error()}catch(c){var r,t=(/.*at [^\(]*\((.*):.+:.+\)$/gi.exec(c.stack)||[!1])[1];for(r in scripts)if(scripts[r].src==t||"interactive"==scripts[r].readyState)return scripts[r];return null}}});
+    currentScript = document.currentScript;
+    var iframeElement = null, bnDiv = null, bnScaleDiv = null, bnFixedDiv = null, width = 100, height = 100;
+
+    createIframe();
+
+
+    function createIframe() {
+        var urlParams = getUrlParams();
+            var id = "BmLbqYk6Xxow2RBlzy5ZMA3Jgpa4zQdWRCMyPclmlF";
+            var clickTag = urlParams.bnTag || '', responsive = urlParams.responsive || 0, protocol = 'https:';
+
+        if (window && window.location && ['https:', 'http:'].indexOf(window.location.protocol) >= 0) {
+            protocol = window.location.protocol;
+        }
+        width = '300';
+        height = '250';
+
+        var srcUrl = protocol + '//storage.bannernow.com/' + id + '/index.html';
+
+        clickTag = (clickTag == 'bannernow')?'':clickTag;
+        srcUrl += '?bnTag=' + clickTag;
+        
+        for (var key in urlParams) {
+            if (key !== 'bnTag') srcUrl += '&'+key+'=' + urlParams[key];
+        }
+        srcUrl += '&domain=' + getHostname(document.referrer || '');
+
+        iframeElement = document.createElement('iframe');
+        iframeElement.src = srcUrl;
+
+        iframeElement.style.maxWidth = 'none !important';
+        iframeElement.style.maxHeight = 'none !important';
+        iframeElement.style.position = 'absolute';
+        iframeElement.style.left = '0';
+        iframeElement.style.top = '0';
+        iframeElement.style.backgroundColor = 'transparent';
+        iframeElement.style.border = 'none';
+        iframeElement.style.width = width + 'px';
+        iframeElement.style.height = height + 'px';
+
+        iframeElement.setAttribute('frameborder', '0');
+        iframeElement.setAttribute('scrolling', 'no');
+        iframeElement.setAttribute('allowTransparency', 'true');
+
+        bnDiv = document.createElement('div');
+        bnScaleDiv = document.createElement('div');
+        bnFixedDiv = document.createElement('div');
+
+        if (id && currentScript && currentScript.parentNode && currentScript.parentNode.nodeName.toLowerCase() != 'head') {
+            currentScript.parentNode.appendChild(bnDiv);
+        } else {
+            document.body.appendChild(bnDiv);
+        }
+
+        bnDiv.appendChild(bnScaleDiv);
+        bnScaleDiv.appendChild(bnFixedDiv);
+        bnFixedDiv.appendChild(iframeElement);
+
+        bnDiv.style.position = 'relative';
+        bnDiv.style.width = width + 'px';
+        bnDiv.style.height = height + 'px';
+        bnDiv.style.overflow = 'hidden';
+
+        bnFixedDiv.style.width = width + 'px';
+        bnFixedDiv.style.height = height + 'px';
+
+        if (responsive == 1) {
+            bnDiv.style.width = '100%';
+            onWindowResize({target:window});
+            addListener(window, 'resize', onWindowResize);
+        }
+    }
+
+    function getHostname(url) {
+        var h;
+        if (url.indexOf('://') > -1) {
+            h = url.split('/')[2];
+        } else {
+            h = url.split('/')[0];
+        }
+        h = h.split(':')[0];
+        h = h.split('?')[0];
+        return h;
+    }
+
+    function getUrlParams() {
+        var params = {};
+        var dirtyVars = currentScript.src.match(/(\?|\&)([^=]+)\=([^&]+)/gi);
+        if (dirtyVars && dirtyVars.length > 0) {
+        dirtyVars.forEach(function(candidate, index) {
+        var pair = candidate.replace(/[&\\?]/, '').split('=');
+        params[pair[ 0]] = pair[ 1];
+        });
+        }
+        return params;
+    }
+
+        function onWindowResize(e) {
+            var ratio = bnDiv.offsetWidth / width,
+                newH = height*ratio;
+
+            bnScaleDiv.style.transform = 'scale(' + ratio + ') translate3d(0px, 0px, 0px)';
+            bnScaleDiv.style.transformOrigin = '0px 0px 0px';
+            bnScaleDiv.style.width = bnDiv.offsetWidth + 'px';
+            bnScaleDiv.style.height = newH + 'px';
+            bnDiv.style.height = newH + 'px';
+        }
+
+    function addListener(element, event, handler) {
+        if (element.addEventListener) {
+        element.addEventListener(event, handler, false);
+        } else if (element.attachEvent) {
+        element.attachEvent('on' + event, handler);
+        } else {
+        element[ 'on' + event] = handler;
+        }
+    }
+})();
+
+	</script>	
+
+	<div class="banner" style="max-width:300px;">
+   
+            <div style="position: relative; width: 100%; height: 250px; overflow: hidden;"><div style="transform: scale(1) translate3d(0px, 0px, 0px); transform-origin: 0px 0px 0px; width: 300px; height: 250px;"><div style="width: 300px; height: 250px;"><iframe src="https://storage.bannernow.com/BmLbqYk6Xxow2RBlzy5ZMA3Jgpa4zQdWRCMyPclmlF/index.html?bnTag=&amp;responsive=1&amp;domain=bannernow.com" frameborder="0" scrolling="no" allowtransparency="true" style="position: absolute; left: 0px; top: 0px; background-color: transparent; border: none; width: 300px; height: 250px;"></iframe></div></div></div></div>
+	<div style="position: relative; width: 100%; height: 250px; overflow: hidden;"><div style="transform: scale(1) translate3d(0px, 0px, 0px); transform-origin: 0px 0px 0px; width: 300px; height: 250px;"><div style="width: 300px; height: 250px;"><iframe src="https://storage.bannernow.com/BmLbqYk6Xxow2RBlzy5ZMA3Jgpa4zQdWRCMyPclmlF/index.html?bnTag=&amp;responsive=1&amp;domain=bannernow.com" frameborder="0" scrolling="no" allowtransparency="true" style="position: absolute; left: 0px; top: 0px; background-color: transparent; border: none; width: 300px; height: 250px;"></iframe></div></div></div>
+	
+	
+	
+
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+
+<html>
+	<head>
+		<link rel="shortcut icon" href="">
+	<style>
+		#sendMessage {
+			position: absolute;
+			top:690px ;
+		}
+		#message  {
+			position: absolute;
+			top:690px ;
+			left:60px;
+		}
+	</style>
+	</head>
+	<body bgcolor="#E6E31D">
+		<div align="center">  <b><span style="color: green" > Group Chat Application </span></b> </div>
+      	<div align="right">	<a href="#"> <span> Main Page </span>	</a> </div>		
+   
+
+	<button id="newUsername" onclick="setName()"> Change Username </button> 
+	<input id="username" autocomplete="on" />		
+	 <div id="chatPanel">
+			<span id="showSending" > </span>	
+	</div>
+	
+
+	<button id="sendMessage" style="width:50px; height:40px" onclick="deliverMessage()"  >Send</button>
+	<textarea rows="2" cols="150" id="message" autocomplete="on" onkeyup="sending()"> </textarea>
+
+<!--		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>-->
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+//			var socket = io(); // somehow, this code line does not make socket emit, but the line below does
+			
+			let socket = io().connect('http://127.0.0.1:3000/')
+				
+			
+				let message = document.getElementById('message')
+				let username = document.getElementById('username')
+				let sendMessage = document.getElementById('sendMessage')
+				let changeUsername = document.getElementById('newUsername')
+				let chatPanel = document.getElementById('chatPanel')
+				
+
+				message.addEventListener("keyup", function(event) {
+  					if (event.keyCode === 13) {
+   						event.preventDefault();
+						sendMessage.click();
+					}
+				});
+			
+				function  sending()  { 
+					socket.emit('sending')
+//					here, emit means the client side send to the server side first before the line below socket.on below executes. In short, if change event name 'displaySending' to 'sending', then the app still works even though there are 4 event with the same name 'displaySending'
+				}
+			
+				socket.on('displaySending', (data) => {
+					
+					document.getElementById('showSending').innerHTML = data.username + ' is sending texts... '
+					
+				})
+				
+				function setName() {
+					socket.emit('changeName', { newName : username.value  })
+					username.value = ""
+				}
+			
+				function deliverMessage(){
+					socket.emit('newMessage', { newMessage : message.value  })
+					message.value = ""
+					
+				}
+				
+				socket.on('filter', (data) => {
+					let newLine = document.createElement('p')
+					let span = document.createElement('span')
+					let name = document.createTextNode(data.username)
+					span.appendChild(name)
+					span.style.color = "pink"
+					span.style.fontSize = "20px"
+					let newText = document.createTextNode(' : ' +  data.newMessage )
+					newLine.append(span)
+					newLine.append(newText)
+					chatPanel.insertBefore(newLine, document.getElementById('showSending'));
+					document.getElementById('showSending').innerHTML = ''
+//					element.insertAdjacentHTML(position, text); // this code line can append but this <p>...</p> is showed on the screen
+				});
+				
+		</script>
+		<script type="application/json" src="/Users/Student/chatApp/chatApp.js">
+			
+			
+				
+			
+			
+		</script>
+	</body>
+</html>

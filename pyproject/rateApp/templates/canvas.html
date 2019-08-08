@@ -1,0 +1,162 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  	<meta charset="utf-8">
+	<style type="text/css">
+		#canvas {
+			border: 5px solid #000000;
+			cursor: url(http://bringerp.free.fr/Files/RotMG/cursor.gif);
+		}
+	</style>
+</head>
+
+<body>
+	
+	<canvas id="canvas" width="250" height="250"></canvas> <br>
+	<button onclick="clearCanvas()" id="clearCanvas" value="Clear Canvas" >Clear Canvas</button> 
+	
+	
+	
+	
+	{% if done == 0 %}
+	<form id="aForm" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<input type="hidden" name="canvasImg" id="inputImg" value="">
+		<input type="hidden" name="count" value="0">
+		<button onclick="send()" id="submit" value="Submit" >Submit</button>
+	</form>
+	<br>
+	<div type="hidden" name="done" id="done" value="{{done}}"> </div>
+	<div  style="color: darkgreen; font: 45px; position: relative;">  {{rate}}
+	</div>
+	<script>
+		history.pushState(null, null, document.title);
+		window.addEventListener('popstate', function () {
+    	history.pushState(null, null, document.title);
+		});
+	</script>
+	
+	{% elif done == 1 %}	
+		<div  style="color: darkgreen; font: 45px; position: relative;">  {{rate}}   </div> <br>
+		{{ people }} have reviewed and voted <br>
+		{{ average }} is the average rating of every apps here 
+		<form method="post">
+			{% csrf_token %}
+			<input type="submit" name="edit" value="Edit Vote" >
+		</form>
+	<script>
+		history.pushState(null, null, document.title);
+		window.addEventListener('popstate', function () {
+    	history.pushState(null, null, document.title);
+		});
+	</script>
+	{% else %}
+<br> <br> <br>	
+	<button type="checkbox" onclick="showPass()"  value="show password" >show password</button> 
+		password : <input  type="password" id="pw"  > <br>
+		username : <input  type="text" id="un" > 
+		<br>
+		<button value="Submit" id="Go" onClick="theForm()" onMouseOver="saveInput()"> Submit</button>
+	
+	<form method="post" id="theForm">
+		{% csrf_token %}
+		<input  type="hidden" id="realPass" name="password" value=""> <br>	
+		<input  type="hidden" id="realUsername" name="username" value=""> 
+	</form>
+	
+		
+	{% endif %}
+	
+	<script>
+	try {		
+		let canvas = document.getElementById('canvas');
+		let ctx = canvas.getContext('2d');
+		ctx.fillStyle = "black";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		
+		let lastX = lastY = 0;
+		let mouseX = mouseY = 0;
+		let mousedown = false;
+		
+		function mouseDown(e) {
+    		lastX = mouseX = e.clientX
+			lastY = mouseY = e.clientY
+			mousedown = true;
+		}
+		
+		function mouseUp(e) {
+			 mousedown = false;
+		}
+		
+		function mouseMove(e) {
+			mouseX = e.clientX
+			mouseY = e.clientY
+			
+			 if(mousedown === true) {
+				ctx.beginPath(); 	
+            	ctx.globalCompositeOperation = "source-over";
+            	ctx.strokeStyle = 'white';
+				ctx.lineWidth = 13;
+				 // allow client to change the width ??? 
+				ctx.moveTo(lastX , lastY);
+        		ctx.lineTo(mouseX,mouseY);
+        		ctx.lineJoin = ctx.lineCap = 'round';
+				ctx.stroke();
+			 }
+			lastX = mouseX;
+			lastY = mouseY;
+		}
+		
+		canvas.addEventListener('mousedown', mouseDown, false)
+		canvas.addEventListener('mouseup', mouseUp, false)
+		canvas.addEventListener('mousemove', mouseMove, false)
+	} catch (err) {
+		
+	}
+		
+		function clearCanvas() {
+			let ctx = canvas.getContext('2d');
+			ctx.fillStyle = "black";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+		}
+		
+		function send() {
+			
+			let data = canvas.toDataURL();
+			document.getElementById('inputImg').setAttribute('value', data)
+			document.getElementById("submit").style.disable = true
+    		document.getElementById("aForm").submit()
+		}
+		
+		history.pushState(null, null, document.title);
+		window.addEventListener('popstate', function () {
+    	history.pushState(null, null, document.title);
+		});
+		
+		
+		function showPass() {
+			let a = document.getElementById('pw')
+			if (a.type === "password") {
+				a.type = "text";
+			}
+			else {
+				a.type = "password";
+			}
+		}
+		
+//		function saveInput() {
+//			document.getElementById('realUsername').value =  document.getElementById('un').value)
+//			document.getElementById('realPass').value = document.getElementById('pw').value
+//		}
+		
+		function theForm() {
+			document.getElementById('realUsername').value =  document.getElementById('un').value
+			document.getElementById('realPass').value = document.getElementById('pw').value
+			document.getElementById('theForm').submit()
+		}
+	</script>
+	
+	
+</body>
+</html>

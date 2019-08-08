@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  	
+</head>
+
+<body>
+	{% if done == 4 %}
+	<form method="post">
+		{% csrf_token %}
+		<div id="VoteScore" style="color: darkgreen; font: 45px; position: relative;">  {{rate}} </div>
+			<br>
+		<div> Is your vote correct ? </div>
+		<input type="submit" name="verify" value="Confirm">
+		<br>
+		<div style="color: red"> If your vote is not correct, please go back and rewrite your vote on the panel </div>
+		<input type="submit" value="GoBack" name="verify">
+	</form>
+		
+		<script>
+		
+		history.pushState(null, null, document.title);
+		window.addEventListener('popstate', function () {
+    	history.pushState(null, null, document.title);
+		});
+			
+		</script>
+	
+	{% elif done == 5 %}	
+	<p> Each user can only edit voting 3 times per month. You must agree to continue </p>
+		<input type="radio" name="opinion" value="1" onClick="disable()"> Disagree<br>
+			<input type="radio" name="opinion" value="2" onClick="enable()"> Agree<br>
+	
+		<form method="post">
+			{% csrf_token %}		
+			<input type="submit" id="proceed" name="proceed" value="Proceed" disabled>
+		</form>
+	
+		<script>
+			function enable() {
+				document.getElementById('proceed').disabled = false
+			}
+			function disable() {
+				document.getElementById('proceed').disabled = true
+			}
+			
+			history.pushState(null, null, document.title);
+			window.addEventListener('popstate', function () {
+    		history.pushState(null, null, document.title);
+			});
+		</script>
+	{% endif %}
+	
+
+</body>
+</html>

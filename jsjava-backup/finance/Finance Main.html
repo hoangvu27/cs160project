@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<body bgcolor="c#8EEA18">
+	<div align="center"><span style="font-size: 40px; color: red"> <b> Finance Main Page </b> </span> </div> <br> <br>
+		<a href="http://127.0.0.1:8888/finance/stock.html"> Stock </a> <br><br>
+		<a href="#" onClick="sendForm(this)" number="2"> Create Budget </a> <br> <br>
+		<a href="#" onClick="sendForm(this)" number="3"> View Budget </a> <br> <br>
+		<a href="http://127.0.0.1:8888/finance/interest%20rate.html"> Interest Rate </a> <br><br>
+		<a href="http://localhost:4000/">Home</a>
+		
+		
+	<form id="aForm" action="">
+		<input type="hidden" id="serialNumber" name="serialNumber" value=""/>
+	</form>
+		
+	<script>
+			let x = location.search;
+				x = x.substring(1, x.length)
+				let arr = x.split("=")
+				
+				let targetIndex =  arr.indexOf('serialNumberFinance')
+			let temp = arr[targetIndex + 1]
+			console.log(atob(temp))
+			function sendForm(element) {
+				
+
+				if (element.getAttribute('number') === "2") {
+					document.getElementById('aForm').action = "http://localhost:8080/Finance/PersonalBudget.jsp"
+				}
+				else if (element.getAttribute('number') === "3") {
+					document.getElementById('aForm').action = "http://localhost:8080/Finance/ViewBudget.jsp"
+				}
+				
+				document.getElementById('serialNumber').value = temp
+				document.getElementById('aForm').submit()
+			}
+	</script>
+	</body>
+</html>
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="../../static/css/weather.css" rel="stylesheet" type="text/css">	
+
+<body id="backgroundIMG" background="../../static/img/shot{{shot}}.jpg" >
+<!--		do not forget to change background every search -->
+	<h1 align="center"> Weather Forecast </h1>
+	<div>
+		<span> {{ WeatherInfo.city }} ,  </span> &nbsp;&nbsp;&nbsp;&nbsp; 
+		<span> {{ WeatherInfo.nation }} </span> <br>
+		<span> {{ WeatherInfo.today }} </span>
+		<form method="POST">
+			{% csrf_token %}
+			<span id="newLocation"> New location : </span> 
+			<input name="changeLocation" type="text" placeholder="Name of Location"> 
+			<button type="submit" class="submit"> Enter </button> <br>
+			<p id="warning"> {{message}} </p>
+		</form>
+			
+	</div>
+	<div id="second">
+		<img id="icon" src="http://openweathermap.org/img/w/{{ WeatherInfo.icon }}.png" alt="">  &nbsp;&nbsp;
+		<span> {{ WeatherInfo.description }} </span>  <br>
+		<span id="temperature"> {{ WeatherInfo.temperature }} &#8457;  </span> <br>
+		<span> Min : {{ WeatherInfo.lowest }} </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<span> Max: {{ WeatherInfo.highest }} </span>	
+	</div>
+	
+	<div id="third">
+	</div>
+	
+	<div id="a">
+		<span> {{ WeatherInfo.day2.date }} </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+		<img  src="http://openweathermap.org/img/w/{{ WeatherInfo.day2.icon }}.png" alt=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<img  src="../../static/img/drop.png" alt="">
+		<span>  {{ WeatherInfo.day2.probRain }} % </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span>  {{ WeatherInfo.day2.lowest }}  &#8457;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span> {{ WeatherInfo.day2.highest }}  &#8457; </span>
+		<br>
+		
+		<span> {{ WeatherInfo.day3.date }} </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+		<img  src="http://openweathermap.org/img/w/{{ WeatherInfo.day2.icon }}.png" alt=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<img  src="../../static/img/drop.png" alt="">
+		<span>  {{ WeatherInfo.day3.probRain }} % </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span>  {{ WeatherInfo.day3.lowest }}  &#8457;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span> {{ WeatherInfo.day3.highest }}  &#8457; </span>
+		<br>
+		
+		<span> {{ WeatherInfo.day4.date }} </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+		<img  src="http://openweathermap.org/img/w/{{ WeatherInfo.day2.icon }}.png" alt=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<img  src="../../static/img/drop.png" alt="">
+		<span>  {{ WeatherInfo.day4.probRain }} % </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span>  {{ WeatherInfo.day4.lowest }}  &#8457;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span> {{ WeatherInfo.day4.highest }}  &#8457; </span>
+		<br>
+		
+		<span> {{ WeatherInfo.day5.date }} </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+		<img  src="http://openweathermap.org/img/w/{{ WeatherInfo.day2.icon }}.png" alt=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<img  src="../../static/img/drop.png" alt="">
+		<span>  {{ WeatherInfo.day5.probRain }} % </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span>  {{ WeatherInfo.day5.lowest }}  &#8457;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+		<span> {{ WeatherInfo.day5.highest }}  &#8457; </span>
+		<br>
+	</div>
+	
+	<div id="b"> 
+		<span> <font color="Yellow"> Details </font></span> <br>
+		<span>   Humidity  :  {{ WeatherInfo.humid }} </span> <br>
+		<span>   UV index  :  {{ WeatherInfo.UV }} </span> <br>
+		<span>   Wind at  {{ WeatherInfo.wind.speed }} MPH with direction {{ WeatherInfo.wind.direction }} </span> <br>
+		<span>   Pressure  :  {{ WeatherInfo.pressure}}  hPa </span> <br>
+		<span>   visibility  :  {{ WeatherInfo.visibility}}  km  </span> <br>
+		<img  src="../../static/img/drop.png" alt="">
+		<span>   {{ WeatherInfo.precipitation.probability }} % </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span>  {{ WeatherInfo.precipitation.precipClassify }}   {{ WeatherInfo.precipitation.precipType }}  </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span> {{ WeatherInfo.precipitation.precipIntensity }}  mm per hour </span>
+	</div>
+	
+<!--
+	<div id="cont" onscroll="myFunction()"> 
+	</div>
+	
+	<script>
+		window.onscroll = function() {myFunction()};
+
+		function myFunction() {
+				
+  				if(window.innerHeight + window.scrollY > document.body.clientHeight  ) {
+          	 		var para = document.createElement("p");
+				   var node = document.createTextNode("{{cool.one}}");
+					para.appendChild(node);
+
+					var element = document.getElementById("cont");
+					element.appendChild(para);
+				}
+		}
+		
+</script>
+-->
+
+</body>
+</html>

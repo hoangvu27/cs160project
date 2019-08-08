@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	
+<body>
+	<div style="color: peru; font-size: 70px;" > GET IN TOUCH </div> <br><br>
+	<div style="color:gold; font-size: 30px;"> warning: if you spam, your email will not be sent. </div> <br><br>
+	<form method="post">
+		{% csrf_token %}
+	<div align="center"> Name: <input type="text" required name="fullname"> </div> <br><br>
+	<div align="center"> Email: <input required type="email" name="email"> </div>	<br><br>
+	<div align="center"> Topic: <input type="text" required name="topic">  </div>	<br><br>
+	<div align="center"> Message: <textarea required rows="10" cols="50" name="message"> </textarea></div>	<br>
+	<input type="submit">	
+	</form>
+	
+	<div style="color: red; font-size: 40px;" >  {{textResponse}} </div> <br><br>  
+</body>
+</html>
+	

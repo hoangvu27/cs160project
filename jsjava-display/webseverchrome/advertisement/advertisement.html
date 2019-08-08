@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<header>
+<link href="advertisement.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="animate.css/animate.min.css">
+	<style>
+			.ads4 {
+				width: 100%;
+				background: url(https://media.giphy.com/media/J6PigYOyFXraM/giphy.gif);
+				font-size: 100px;
+				color: yellowgreen;
+				text-align: center;
+				padding-bottom: 30px;
+				padding-top: 30px;
+				display: none;
+			}
+			.text4 {
+				font-weight: bold;
+				animation-delay: 0.8s;
+			}
+			.store {
+				background: #12B4DD;
+				color: yellow;
+				font-size: 50px;
+				padding-left: 20px;
+				padding-right: 20px;
+				transition: .5s;
+			}
+			.store:hover {
+				opacity: 0.5;
+				color: black;
+				cursor: pointer;
+			}
+		</style>
+	<style>
+		.carBanner {
+			position: absolute;
+			align-content: right;
+			right: 10px;
+		}
+		.food {
+			display: none;
+		}
+		.restaurant {
+			position: relative;
+			left : 300px;
+		}
+	</style>
+</header>
+<body>
+	<!--	to see this ads on the right side, must disable the ads block. The code from line 51 to 57 is from https://bannernow.com/samples-->
+	<div class="banner" style="max-width:300px;">	
+		<div style="position: absolute; width: 100%; height: 250px; overflow: hidden;"><div style="transform: scale(1) translate3d(0px, 0px, 0px); transform-origin: 0px 0px 0px; width: 300px; height: 250px;">
+		
+			<div style="width: 300px; height: 250px;">
+				<iframe src="https://storage.bannernow.com/BmLbqYk6Xxow2RBlzy5ZMA3Jgpa4zQdWRCMyPclmlF/index.html?bnTag=&amp;responsive=1&amp;domain=bannernow.com" frameborder="0" scrolling="no" allowtransparency="true" style="position: absolute; left: 0px; top: 0px; background-color: transparent; border: none; width: 300px; height: 250px;"></iframe></div></div></div>
+	</div>
+	
+	<div  align="right" class="carBanner" >
+		<a href="https://www.carstoresj.com/">
+			<img src="banner 1.png" alt=""  > 
+		</a>
+	</div>
+
+	
+	<div id="displayAds"> 
+		<div class="ads4 animated flipInY l" id="buy3get1" > 
+			<div class="text4 animated bounce" > BUY 3 GET 1 FREE </div>
+			<div> until Sep 15th</div>
+			<a class="store" herf="https://www.homedepot.com/b/Outdoors-Garden-Center-Edible-Garden-Herb-Plants/N-5yc1vZc8rf"> Check it out </a>
+		</div>
+		
+		<div class="food" id="food">
+			<a href="https://www.mosaicdowntown.com/">
+				<img src="banner3.png" alt="" height="500px" width="900" class="restaurant">
+			</a>
+		</div>
+	</div>
+	
+	<div class="flipAds" style.display="block">
+		<div class="Ads">
+			<div class="front">
+		  		<img class="img" src="front.png" alt="">
+			
+			</div>
+			<div class="back">
+				<form method="post">
+				<p>Your working level:</p>
+		 			<input type="radio" name="work" value="None"> Unemployed &nbsp;
+  					<input type="radio" name="work" value="PT">Part-time &nbsp;
+  					<input type="radio" name="work" value="FT"> Full-time <br>
+		  			<input type="radio" name="work" value="contracts"> Contracts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="work" value="other"> Entreupreuneur <br><br><br>
+					
+					<form>
+					Monthly Income: <input type="range" id="income" name="income" min="0" max="20000" oninput="result.value=income.value">$
+					<input id="result" name="result" type="number" value="5000" min="0" max="20000" oninput="income.value=result.value" />
+					</form> <br><br><br>
+					
+					Choose your gender: <br><br> &nbsp;&nbsp;
+					<img class="prevImg" src="prev.png" onClick="prev()" alt="prevButton"> 
+					<img class="nextImg" src="next.png" alt="nextButton" onClick="next()"> &nbsp;&nbsp; 
+					<span id="display" name="display">Male</span>
+					<br><br>
+				
+					<button type="button" class="submit" onclick="getAdvertisement()" value="submit">submit</button>
+				</form>
+			</div>		
+		</div>
+	</div>
+	<div align="center"><b><a class="packages" href="https://health.clevelandclinic.org/do-you-have-a-stiff-neck-try-these-simple-remedies/">All packages</a></b></div>
+	
+	<script>
+		function update() {
+			document.getElementById("textArea").value = "" + document.getElementById("output").value + "";
+		}
+		function prev() {
+			let temp = document.getElementById("display")
+			if (temp.innerHTML === "Male") { temp.innerHTML ="other" }
+			else if (temp.innerHTML === "Female") { temp.innerHTML ="Male" }
+			else if (temp.innerHTML === "other") { temp.innerHTML ="Female" }
+		}
+		function next() {
+			let temp = document.getElementById("display")
+			if (temp.innerHTML === "Male") { temp.innerHTML ="Female"}
+			else if (temp.innerHTML === "Female") { temp.innerHTML ="other" }
+			else if (temp.innerHTML === "other") { temp.innerHTML ="Male" }
+		}
+	</script>
+	<script>
+		function getAdvertisement() {
+			let temp = document.getElementsByName("work")
+			let div = document.getElementById("displayAds") 
+
+			if (temp[0].checked) {	
+				let a = document.createTextNode("NO CURRENT OFFER")
+				div.appendChild(a);	
+				div.style.textAlign="center"
+				div.style.color = "GREY" 
+				div.style.fontSize = "150px"	
+			}
+			else if ( parseInt(document.getElementById("result").value)  < 10000  ) {
+				document.getElementById("food").style.display = "block"
+			}
+			else  {
+				document.getElementById("buy3get1").style.display = "block"
+				document.getElementsByClassName("carBanner")[0].style.zIndex = 1
+			}
+			document.getElementsByClassName("flipAds")[0].style.display="none";
+			
+			let link = document.createElement("a")
+			link.href = "http://127.0.0.1:8888/Accounting/mainAccounting.html"
+			let text = document.createTextNode("go to accounting software")
+			let span = document.createElement("span")
+			span.style = "font-size:30px"
+			span.appendChild(text)
+			link.appendChild(span)
+			let p = document.createElement("div")
+			p.appendChild(link)
+			p.setAttribute("align", "center") 
+//			button.setAttribute("position", "absolute") 
+//			button.setAttribute("top", "-30px") 
+			div.appendChild(p)
+		}		
+	</script>
+	
+	<script>
+		let aWindow;
+		setTimeout( () => {aWindow =  window.open("https://share.bannersnack.com/bunfda0sk/", "", "width=700, height=700");
+//		do not forget to enable pop up window 
+							aWindow.moveTo(30, 10);
+  							aWindow.focus(); 
+						  }, 4000)
+			
+	</script>
+<!--	code below  & code from line 51 to 57 are taken from https://bannernow.com/samples. In other word, the ads on the left is not written by me. Also, the ads can only be seen when adsblock is disabled-->
+	<script>
+		(function() {
+    var currentScript="currentScript",scripts=document.getElementsByTagName("script");currentScript in document||Object.defineProperty(document,currentScript,{get:function(){try{throw Error()}catch(c){var r,t=(/.*at [^\(]*\((.*):.+:.+\)$/gi.exec(c.stack)||[!1])[1];for(r in scripts)if(scripts[r].src==t||"interactive"==scripts[r].readyState)return scripts[r];return null}}});
+    currentScript = document.currentScript;
+    var iframeElement = null, bnDiv = null, bnScaleDiv = null, bnFixedDiv = null, width = 100, height = 100;
+
+    createIframe();
+
+
+    function createIframe() {
+        var urlParams = getUrlParams();
+            var id = "BmLbqYk6Xxow2RBlzy5ZMA3Jgpa4zQdWRCMyPclmlF";
+            var clickTag = urlParams.bnTag || '', responsive = urlParams.responsive || 0, protocol = 'https:';
+
+        if (window && window.location && ['https:', 'http:'].indexOf(window.location.protocol) >= 0) {
+            protocol = window.location.protocol;
+        }
+        width = '300';
+        height = '250';
+
+        var srcUrl = protocol + '//storage.bannernow.com/' + id + '/index.html';
+
+        clickTag = (clickTag == 'bannernow')?'':clickTag;
+        srcUrl += '?bnTag=' + clickTag;
+        
+        for (var key in urlParams) {
+            if (key !== 'bnTag') srcUrl += '&'+key+'=' + urlParams[key];
+        }
+        srcUrl += '&domain=' + getHostname(document.referrer || '');
+
+        iframeElement = document.createElement('iframe');
+        iframeElement.src = srcUrl;
+
+        iframeElement.style.maxWidth = 'none !important';
+        iframeElement.style.maxHeight = 'none !important';
+        iframeElement.style.position = 'absolute';
+        iframeElement.style.left = '0';
+        iframeElement.style.top = '0';
+        iframeElement.style.backgroundColor = 'transparent';
+        iframeElement.style.border = 'none';
+        iframeElement.style.width = width + 'px';
+        iframeElement.style.height = height + 'px';
+
+        iframeElement.setAttribute('frameborder', '0');
+        iframeElement.setAttribute('scrolling', 'no');
+        iframeElement.setAttribute('allowTransparency', 'true');
+
+        bnDiv = document.createElement('div');
+        bnScaleDiv = document.createElement('div');
+        bnFixedDiv = document.createElement('div');
+
+        if (id && currentScript && currentScript.parentNode && currentScript.parentNode.nodeName.toLowerCase() != 'head') {
+            currentScript.parentNode.appendChild(bnDiv);
+        } else {
+            document.body.appendChild(bnDiv);
+        }
+
+        bnDiv.appendChild(bnScaleDiv);
+        bnScaleDiv.appendChild(bnFixedDiv);
+        bnFixedDiv.appendChild(iframeElement);
+
+        bnDiv.style.position = 'relative';
+        bnDiv.style.width = width + 'px';
+        bnDiv.style.height = height + 'px';
+        bnDiv.style.overflow = 'hidden';
+
+        bnFixedDiv.style.width = width + 'px';
+        bnFixedDiv.style.height = height + 'px';
+
+        if (responsive == 1) {
+            bnDiv.style.width = '100%';
+            onWindowResize({target:window});
+            addListener(window, 'resize', onWindowResize);
+        }
+    }
+
+    function getHostname(url) {
+        var h;
+        if (url.indexOf('://') > -1) {
+            h = url.split('/')[2];
+        } else {
+            h = url.split('/')[0];
+        }
+        h = h.split(':')[0];
+        h = h.split('?')[0];
+        return h;
+    }
+
+    function getUrlParams() {
+        var params = {};
+        var dirtyVars = currentScript.src.match(/(\?|\&)([^=]+)\=([^&]+)/gi);
+        if (dirtyVars && dirtyVars.length > 0) {
+        dirtyVars.forEach(function(candidate, index) {
+        var pair = candidate.replace(/[&\\?]/, '').split('=');
+        params[pair[ 0]] = pair[ 1];
+        });
+        }
+        return params;
+    }
+
+        function onWindowResize(e) {
+            var ratio = bnDiv.offsetWidth / width,
+                newH = height*ratio;
+
+            bnScaleDiv.style.transform = 'scale(' + ratio + ') translate3d(0px, 0px, 0px)';
+            bnScaleDiv.style.transformOrigin = '0px 0px 0px';
+            bnScaleDiv.style.width = bnDiv.offsetWidth + 'px';
+            bnScaleDiv.style.height = newH + 'px';
+            bnDiv.style.height = newH + 'px';
+        }
+
+    function addListener(element, event, handler) {
+        if (element.addEventListener) {
+        element.addEventListener(event, handler, false);
+        } else if (element.attachEvent) {
+        element.attachEvent('on' + event, handler);
+        } else {
+        element[ 'on' + event] = handler;
+        }
+    }
+})();
+
+	</script>	
+	
+</body>
+	
+</html>
+

@@ -1,0 +1,8 @@
+<servlet>
+    <servlet-name>BillServlet</servlet-name>
+<!--    <servlet-name>ClientServlet</servlet-name>-->
+    <jsp-file>/Bill.jsp</jsp-file>
+</servlet>
+
+
+

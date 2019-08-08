@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<!--	code from line 3 to 20 is taken from www.w3schools.com	-->
+	<script>
+function startTime() {
+  var today = new Date();
+  var h = today.getHours() + {{hourGap}}
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML = 
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>		
+</head>
+<body onload="startTime()">	
+<!-- the code in line 8 is taken from world time buddy website-->
+<span class="wtb-ew-v1" style="width: 369px; display:inline-block"><script src="https://www.worldtimebuddy.com/clock_widget.js?h=0&bc=8BA1BB&cn=&wt=c2"></script><i><a href="https://www.worldtimebuddy.com/">World Clock</a></i><noscript><a href="https://www.worldtimebuddy.com/">World Clock</a></noscript><script>window[wtb_event_widgets.pop()].init()</script></span>
+
+<!--	code from line 28 to 31 is taken from https://www.timeanddate.com/clocks/free.html -->
+	<br>
+San Jose time:
+	<br>
+	<iframe src="http://free.timeanddate.com/clock/i6v1wbdb/n283/szw160/szh160/hoc000/hbw0/hfc09f/cf100/hnc07c/hwc000/facfff/fnu2/fdi76/mqcff0/mqs4/mql18/mqw4/mqd60/mhcf00/mhs4/mhl5/mhw4/mhd62/mmc000/hhc111/hhs1/hhb10/hmcf90/hms1/hmb10/hscfff/hsw3" frameborder="0" width="160" height="160"></iframe>
+
+<!--	 I write code from line 33 to 61 -->
+<p>Select a new car from the list.</p>
+<form id="clockForm" method="POST">
+	{% csrf_token %}
+	
+<select name="city" id="mySelect" onchange="getCity()">
+  <option value="Select">Select</option>
+  <option value="Tokyo">Tokyo</option>
+  <option value="Paris">Paris</option>
+  <option value="Moscow">Moscow</option>
+  <option value="Seoul">Seoul</option>
+  <option value="Nairobi">Nairobi</option>
+  <option value="New York">New York</option>
+  <option value="Bangkok">Bangkok</option>
+  <option value="Sydney">Sydney</option>
+  <option value="Mumbai">Mumbai</option>
+  <option value="Santiago">Santiago</option>
+  <option value="San Francisco">San Francisco</option>
+  <option value="Berlin">Berlin</option>
+  <option value="Beijing">Beijing</option>
+  <option value="Tel Aviv">Tel Aviv</option>
+  <option value="Toronto">Toronto</option>
+  <option value="Stockholm">Stockholm</option>
+</select>
+</form>
+
+<p>Here is the clock</p>
+
+{{weekday}} <div id="txt"> </div> 
+	
+	
+<script>
+function getCity() {
+//	const Http = new XMLHttpRequest();
+//	let url = 'https://www.oxfordlearnersdictionaries.com/us/definition/english/car'
+//	Http.open("GET", url);
+//Http.send();
+	document.getElementById("clockForm").submit();
+//  var x = document.getElementById("mySelect").value;
+//  document.getElementById("demo").innerHTML = "You selected: " + x;
+}
+</script>
+	
+	
+<!--	the code from line 51 to the end is taken from www.w3schools.com-->
+<canvas id="canvas" width="400" height="400"
+style="background-color:#333">
+</canvas>
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90
+setInterval(drawClock, 1000);
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.5, 'white');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = '#333';
+  ctx.fill();
+}
+
+function drawNumbers(ctx, radius) {
+  var ang;
+  var num;
+  ctx.font = radius*0.15 + "px arial";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num < 13; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(num.toString(), 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
+  }
+}
+
+function drawTime(ctx, radius){
+    var now = new Date();
+	var hour = now.getHours() + {{hourGap}}
+    var minute = now.getMinutes() 
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
+</script>
+
+</body>
+</html>

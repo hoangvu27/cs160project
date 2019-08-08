@@ -1,0 +1,33 @@
+#backgroundIMG {
+	background-repeat: no-repeat;
+	background-size: cover; 
+}
+
+h1 {
+	color: yellow;
+}
+
+#newLocation {
+	color: yellow;
+	font-size: 25px;
+}
+
+#warning {
+	color: red;
+	font-size: 20px;
+	left: 20px;
+}
+
+span {
+	color: white;
+	font-size: 35px;
+}
+
+
+
+ #temperature {
+	 color: white;
+	 font-size: 8em;
+	 font-weight: 60;
+	 opacity: 1;
+}

@@ -1,0 +1,8 @@
+<servlet>
+    <servlet-name>ViewTransactionsServlet</servlet-name>
+<!--    <servlet-name>ClientServlet</servlet-name>-->
+    <jsp-file>/ViewTransactions.jsp</jsp-file>
+</servlet>
+
+
+

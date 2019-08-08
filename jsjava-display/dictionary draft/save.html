@@ -1,0 +1,169 @@
+ <!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #myInput {
+      background-repeat: no-repeat;
+      width: 300px;
+      font-size: 10px;
+      padding: 6px;
+      border: #F5090D solid 2px;
+    }
+
+    #myUL {
+      list-style-type: none;
+		width: 300px;
+		position: relative;
+		left: -30px;
+    }
+
+    #myUL li a {
+      border: 1px solid #676DEC;
+      margin-top: -1px;  
+      background-color: #E6E211;
+      padding: 10px;
+      font-size: 15px;
+      color: blue;
+      display: block
+    }
+
+
+    </style>
+    </head>
+    <body>
+
+    <h2>My Phonebook</h2>
+
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> 
+
+    <ul id="myUL">
+      <li> <a href="#" onmousedown="add(this)" >Adele </a></li>
+	  <li><a href="#">aa</a></li>
+      <li><a href="#">Agnes</a></li>
+	  <li><a href="#">ate</a></li>
+	  <li><a href="#">aww</a></li>
+      <li><a href="#">axczv</a></li>
+	  <li><a href="#">Adele</a></li>
+	  <li><a href="#">aa</a></li>
+      <li><a href="#">Agnes</a></li>
+	  <li><a href="#">ate</a></li>
+	  <li><a href="#">aww</a></li>
+      <li><a href="#">axczv</a></li>
+      <li><a href="#">Billy</a></li>
+      <li><a href="#">Bob</a></li>
+      <li><a href="#">Calvin</a></li>
+      <li><a href="#">Christina</a></li>
+      <li><a href="#">Cindy</a></li>
+    </ul>
+
+<!--
+    <script>
+    function myFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    </script>
+-->
+		
+		<script>
+			
+var UL = document.getElementById("myUL");
+// hilde the list by default
+UL.style.display = "none";
+
+var searchBox = document.getElementById("myInput");
+
+// show the list when the input receive focus
+searchBox.addEventListener("focus",  function(){
+    // UL.style.display = "block";
+});
+
+// hide the list when the input receive focus
+searchBox.addEventListener("blur", function(){
+    UL.style.display = "none";
+});
+
+
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    ul = document.getElementById("myUL");
+    filter = input.value.toUpperCase();
+    // if the input is empty hide the list
+    if(filter.trim().length < 1) {
+        ul.style.display = "none";
+        return false;
+    } else {
+        ul.style.display = "block";
+    }
+
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+
+        // This is when you want to find words that contain the search string
+     if (a.innerHTML.toUpperCase().indexOf(filter) > -1) { 
+        li[i].style.display = "";
+     } else {
+        li[i].style.display = "none";
+    } 
+
+    // This is when you want to find words that start the search string
+    /*if (a.innerHTML.toUpperCase().startsWith(filter)) {
+        li[i].style.display = "";
+    } else {
+        li[i].style.display = "none";
+    }*/
+    }
+//	console.log( document.getElementById('myInput').value ) 
+//	console.log( document.getElementById('1').innerHTML ) 
+}
+			
+function add(element) {
+	document.getElementById('myInput').value = element.innerHTML
+}
+</script>
+
+<!--
+	<script> 
+		const fs = require('fs');
+//		var text = fs.readFileSync("./dict.txt");
+		
+		let text = fs.readFile('dict.txt', (err, data) => { 
+			if (err) throw err; 
+  
+    		return data.toString(); 
+		}) 
+		let textByLine = text.split("\n")
+		console.log(textByLine);
+		</script>
+-->
+		
+<!--
+<script src="jquery-3.4.1.min.js">
+		 $(function(){
+  $('#myUL').hide();
+  $('#myInput').on('focus',function(){
+    $('#myUL').show();
+  });
+})
+		</script>
+-->
+    </body>
+    </html>

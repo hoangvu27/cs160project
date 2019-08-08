@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <link rel="shortcut icon" href="#" />
+	 <style>
+		 #backgroundVideo {
+			 position: absolute;
+			 align-content: center;
+			 top:80px;
+			 left: 500px;
+			 height: 500px;
+			 width: 500px;
+		 }
+		 
+		 .playerName { position: relative ; color: red}
+		 .cardDeck { width:100px ;	 height: 140px;  position: relative; top: 500px; left: 1320px}
+		 .button { width: 50px;  height:50px;  position: relative;  top: 450px; left : 50px }
+		 #ask {
+			 position: relative;  top: 320px;  left: 10px;
+		 }
+/*		 line from 22 to 58 is taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal */
+/*		 In other words, the pop up window is not written by me*/
+		 .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+		 
+		 #Replay { position: relative;  top: 410px; left: -5px;  }
+	
+		 
+	 </style>
+  </head>
+  <body bgcolor="green">
+	  <span class="playerName" id="player1" style="top: 10px">  </span>
+	  <div class="playerName"  id="player2" style="left:600px"> Option </div>
+	  <div class="playerName"  id="player3" style="left: 1280px ; top: -10px">  </div>
+	  <div class="playerName"  id="mainPlayer">  </div>
+	  <a class="cardDeck" href="/helpTable.html" > Game Rules</a> <br>
+	  <img class="cardDeck" src="cardFace/back.png" alt="" >
+
+	  
+	  <button type="button" class="button" id="play" value="Play" onclick="startGame(loadGame, deliverCard, updateFailHand)" style="display: block">Play</button>
+	  <button type="button" class="button"  id="next" value="Next" onclick="next()" style="display:none">Next</button>
+<!--	  code from line 79 to 87 is taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal -->
+	  <button id="Replay" onclick="confirmReplay()" style="display: none">Replay</button>
+	  <button id="End" onclick="engGame()" style="display: none">End Game Instantly</button>
+	  <div id="myModal" class="modal">
+	  	 	<div class="modal-content">
+   		 		<span class="close" onclick="closeConfirm()">&times;</span>
+   	 	 		<p>You are about to restart the game. Are you sure</p>
+				<button id="Restart" onclick="restart()">Restart</button>
+  			</div>
+	  </div>
+	  
+	  <div id="ask" style="display:none"> 
+		  <span id="Highlight" style="color:yellow; position: absolute; top:-150px; left: 150px; font: 35px; z-index: 1"></span>
+		  <span id="Message" style="color:red;"></span> <br>
+		  Select player to ask
+	  	<select id="askPlayer">
+			<option value="Left">Left</option>
+    		<option value="Middle">Middle</option>
+    		<option value="Right">Right</option>	
+		</select>
+		  <br>
+		  choose card to ask
+		  <select id="askCard">
+			<option value="A">A</option>
+    		<option value="2">2</option>	
+			 <option value="3">3</option>
+    		<option value="4">4</option>
+    		<option value="5">5</option>	
+			  <option value="6">6</option>
+    		<option value="7">7</option>
+    		<option value="8">8</option>	
+			  <option value="9">9</option>
+    		<option value="10">10</option>
+    		<option value="J">J</option>	
+			  <option value="Q">Q</option>
+			  <option value="K">K</option>
+		</select>
+	  </div>
+	  
+	  <div id="stat" style="color: darkblue; font: 30px; position: absolute; top:660px; left: 120px;"> </div>
+	  <video id="backgroundVideo"  muted autoplay loop playsinline style=" position:absolute; top: 110px; left: 620px">
+		 <source id="videoSource" src="fish.mp4" type="video/mp4" >
+	  </video>
+	  
+	  <audio controls autoplay id="wow"  style="visibility:hidden">
+		  <source src="splash.mp3" type="audio/mpeg">
+	  </audio>
+	  <audio controls autoplay loop id="music"  style="visibility:hidden">
+		  <source src="underwater.mp3" type="audio/mpeg">
+	  </audio>
+	  
+	  <script type="text/javascript" src="name.js"></script>
+	  <script type="text/javascript" src="Card.js"> </script>
+	  <script type="text/javascript" src="cardDeck.js"> </script>
+	  <script type="text/javascript" src="player.js"> </script>
+	  <script type="text/javascript" src="Game.js"></script> 
+	  <script type="text/javascript" src="click.js"></script> 
+	  
+	  <style>
+		  @keyframes moveToMain  {  from  {top: 500px; left: 1320px}  
+			 					to  { top: 500px ; left: 400px; }  
+		 				}
+		  @keyframes moveToLeft  {  from  {top: 500px; left: 1320px}  
+			 					to  { top: 250px ; left: 0px }  
+		 				}
+		  @keyframes moveToMiddle  {  from  {top: 500px; left: 1320px}  
+			 					to  { top: 0px ; left: 400px }  
+		 				}
+		  @keyframes moveToRight  {  from  {top: 500px; left: 1320px}  
+			 					to  { top: 250px ; left: 1320px }  
+		 				}
+		  @keyframes moveToTable  {  
+			 					to  { top: 250px ; left: 250px }  
+		 				}
+		  
+		  #End {
+			  position : relative;  
+			  top: 400px; 
+			  left : 100px
+		  }
+	  </style>
+  </body>
+</html>
